@@ -74,9 +74,10 @@ st.plotly_chart(fig_pie, use_container_width=True)
 
 # Top Companies Bar Chart
 company_counts = filtered_df["company"].value_counts().head(10).reset_index()
-company_counts.columns = ['company', 'count'] 
-fig_bar = px.bar(company_counts, x="index", y="company",
-                 labels={"index": "Company", "company": "Number of Jobs"},
+company_counts.columns = ['company', 'count']
+
+fig_bar = px.bar(company_counts, x="company", y="count",
+                 labels={"company": "Company", "count": "Number of Jobs"},
                  title="Top Hiring Companies")
 st.plotly_chart(fig_bar, use_container_width=True)
 
