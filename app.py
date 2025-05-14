@@ -59,11 +59,16 @@ col5.metric("📍 Top Location", top_location)
 st.markdown("---")
 
 # Job Category Pie Chart
+# Categorizing job titles
 filtered_df["category"] = filtered_df["job_title"].apply(
     lambda x: "Data" if "Data" in x else ("AI" if "AI" in x else "Other")
 )
+
+# Counting job categories
 category_dist = filtered_df["category"].value_counts().reset_index()
-category_dist.columns = ['company', 'count'] 
+category_dist.columns = ['category', 'count']
+
+# Pie chart
 fig_pie = px.pie(category_dist, names="category", values="count", title="Job Category Distribution")
 st.plotly_chart(fig_pie, use_container_width=True)
 
