@@ -63,11 +63,13 @@ filtered_df["category"] = filtered_df["job_title"].apply(
     lambda x: "Data" if "Data" in x else ("AI" if "AI" in x else "Other")
 )
 category_dist = filtered_df["category"].value_counts().reset_index()
+company_counts.columns = ['company', 'count'] 
 fig_pie = px.pie(category_dist, names="index", values="category", title="Job Category Distribution")
 st.plotly_chart(fig_pie, use_container_width=True)
 
 # Top Companies Bar Chart
 company_counts = filtered_df["company"].value_counts().head(10).reset_index()
+company_counts.columns = ['company', 'count'] 
 fig_bar = px.bar(company_counts, x="index", y="company",
                  labels={"index": "Company", "company": "Number of Jobs"},
                  title="Top Hiring Companies")
